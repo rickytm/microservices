@@ -1,0 +1,15 @@
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\bin\Debug\net6.0\Localization.Core.deps.json
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\bin\Debug\net6.0\Localization.Core.dll
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\bin\Debug\net6.0\Localization.Core.pdb
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\bin\Debug\net6.0\Common.dll
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\bin\Debug\net6.0\Common.pdb
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.csproj.AssemblyReference.cache
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.AssemblyInfoInputs.cache
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.AssemblyInfo.cs
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.csproj.CoreCompileInputs.cache
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.csproj.CopyComplete
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.dll
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\refint\Localization.Core.dll
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\Localization.Core.pdb
+C:\Documentos\Desarrollos\DotNetCore\microservices\backend\src\Services\Localization\Localization.Core\obj\Debug\net6.0\ref\Localization.Core.dll

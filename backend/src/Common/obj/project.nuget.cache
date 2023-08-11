@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "x3FVtiLOM/qUXL5c/YTXalG3vL09uUB50juCiLAmPzFdD1REoDEiHmTXCHpi/YQUoB2AzsNK6kjF1LUIfvjn+Q==",
+  "success": true,
+  "projectFilePath": "C:\\Documentos\\Desarrollos\\DotNetCore\\microservices\\backend\\src\\Common\\Common.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://10.150.5.9:8080/tfs/ProTrans/_packaging/Default/nuget/v3/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
