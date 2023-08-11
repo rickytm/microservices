@@ -7,5 +7,7 @@ namespace Catalog.Core
         public string Nombre { get; set; }
         public int? ParentId { get; set; }
         public virtual Category Parent { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Attribute> Attributes { get; set; }
     }
 }
