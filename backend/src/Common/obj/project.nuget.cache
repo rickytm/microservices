@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "x3FVtiLOM/qUXL5c/YTXalG3vL09uUB50juCiLAmPzFdD1REoDEiHmTXCHpi/YQUoB2AzsNK6kjF1LUIfvjn+Q==",
+  "dgSpecHash": "ZJc7NX4p597zvtjrrA3msKdy+2lAHaR0UYf9ep/kaNCoJuiSi3rnvi8JvXa/1F9othQKa46UrcF1vapLfMCEyQ==",
   "success": true,
   "projectFilePath": "C:\\Documentos\\Desarrollos\\DotNetCore\\microservices\\backend\\src\\Common\\Common.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\munozric\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.4\\microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512"
+  ],
   "logs": [
     {
       "code": "NU1803",

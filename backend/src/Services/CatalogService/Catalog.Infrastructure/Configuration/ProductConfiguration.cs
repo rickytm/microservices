@@ -23,7 +23,6 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 
     }
 }
-
 public class ProductVariantConfiguration : IEntityTypeConfiguration<ProductVariant>
 {
     public void Configure(EntityTypeBuilder<ProductVariant> builder)

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1me5ouqnaCPpqEhwn6u7+9eY2pBCV6ir2IW2J3uoV6pSW2lNYy+XCxlSv7WpIJmG3D7pD303Ysd+kTED7cvzzQ==",
+  "dgSpecHash": "92HbP4/cmgk6oOhoBkJf7giCZXmYrcuRDlBkISVWnoMy1I1RL3T2oZhTWUPWoU71Xoqy5tYSozOUqEQWbHP4wQ==",
   "success": true,
   "projectFilePath": "C:\\Documentos\\Desarrollos\\DotNetCore\\microservices\\backend\\src\\Services\\Localization\\Localization.API\\Localization.API.csproj",
   "expectedPackageFiles": [

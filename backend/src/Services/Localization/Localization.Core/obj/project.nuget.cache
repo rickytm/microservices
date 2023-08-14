@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "cz4fnDQ2vUQsUVls/QEoR55oLA6fxiVDGwzG3DMTYlaamZRr1AAYknaltPQwS05Qo/unWn9Yr+g3A8I2G6VJwA==",
+  "dgSpecHash": "A/bxzVgWdFB6FgodtdbUrM0Bwh5VIdJyhimo4WqBtYDs0uz6+K0qqqAbPRihhQ8cHVU35IjwpBO35Zt1KbCP9g==",
   "success": true,
   "projectFilePath": "C:\\Documentos\\Desarrollos\\DotNetCore\\microservices\\backend\\src\\Services\\Localization\\Localization.Core\\Localization.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\munozric\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.4\\microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512"
+  ],
   "logs": [
     {
       "code": "NU1803",

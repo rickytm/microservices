@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kyqQXLu1vlxSAHVuZMm6zF5MbSvsQyVArS4NzS0pnLXyZF2Ix8t0FXS8w22cW/+Q8iS1vR2y8cWfc06z2CvyZA==",
+  "dgSpecHash": "53c3yRxDey53HrRnYXvkazqttFf06kjgGvvoQO6z1t3ynSZM0brUMao/KlSoY/+4MK49joIYpvpT10c8N8C1lA==",
   "success": true,
   "projectFilePath": "C:\\Documentos\\Desarrollos\\DotNetCore\\microservices\\backend\\src\\Services\\Localization\\Localization.Infrastructure\\Localization.Infrastructure.csproj",
   "expectedPackageFiles": [

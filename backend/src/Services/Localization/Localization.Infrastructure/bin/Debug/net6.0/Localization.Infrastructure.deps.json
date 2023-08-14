@@ -248,6 +248,9 @@
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "Common/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.4"
+        },
         "runtime": {
           "Common.dll": {}
         }
