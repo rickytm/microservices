@@ -1,39 +1,40 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Catalog.Application.Queries;
 using Catalog.Application.Responses;
-using Catalog.Application.Specifications.Attributes;
+using Catalog.Application.Specifications.Categories;
+using Catalog.Core;
 using Common.Persistence;
 using Common.Queries;
 using MediatR;
-
 namespace Catalog.Application.Handlers;
-public class GetAttributesHandler : IRequestHandler<GetAttributesQuery, PaginationDto<AttributeDto>>
+
+public class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, PaginationDto<CategoryDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetAttributesHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public GetCategoriesHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task<PaginationDto<AttributeDto>> Handle(GetAttributesQuery request, CancellationToken cancellationToken)
+    public async Task<PaginationDto<CategoryDto>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
     {
-        var specParams = new AttributesSpecificationParams
+        var specParams = new CategorySpecificationParams
         {
             PageIndex = request.PageIndex,
             PageSize = request.PageSize,
-            Search  = request.Search,
+            Search = request.Search,
             Sort = request.Sort
         };
-        var results = await _unitOfWork.Repository<Core.Attribute>().GetAllWithSpec(new AttributesSpecification(specParams));
-        var totalResults= await _unitOfWork.Repository<Core.Attribute>().CountAsync(new AttributesForCountingSpecification(specParams));
+        var results = await _unitOfWork.Repository<Category>().GetAllWithSpec(new CategorySpecification(specParams));
+        var totalResults = await _unitOfWork.Repository<Category>().CountAsync(new CategoryForCountingSpecification(specParams));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalResults) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
-        var data = _mapper.Map<IEnumerable<AttributeDto>>(results);
+        var data = _mapper.Map<IEnumerable<CategoryDto>>(results);
         var paisesByPage = results.Count;
 
-        var pagination = new PaginationDto<AttributeDto>
+        var pagination = new PaginationDto<CategoryDto>
         {
             Count = totalResults,
             Data = data,

@@ -5,9 +5,9 @@ namespace Catalog.Application.Specifications.Products;
 
 public class ProductSpecificationParams : SpecificationParams
 {
-    public List<int> BrandIds { get; set; } = new List<int>();
-    public List<int> AttributesIds { get; set; } = new List<int>();
-    public List<int> CategoryIds { get; set; } = new List<int>();
+    public List<Guid> BrandIds { get; set; } = new List<Guid>();
+    public List<Guid> AttributesIds { get; set; } = new List<Guid>();
+    public List<Guid> CategoryIds { get; set; } = new List<Guid>();
     public List<int> Ratings { get; set; } = new List<int>();
     public decimal? PrecioMax { get; set; }
     public decimal? PrecioMin { get; set; }
