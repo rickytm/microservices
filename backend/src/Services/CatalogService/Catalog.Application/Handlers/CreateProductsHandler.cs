@@ -34,9 +34,9 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand>
     public async Task Handle(CreateProductsCommand request, CancellationToken cancellationToken)
     {
         var product = MapProductEntity(request);
-        if (request.Attributes?.Any() ?? false) 
+        if (request.Attributes?.Any() ?? false)
         {
-            product.Attributes= request.Attributes.Select(x => new ProductAttribute
+            product.Attributes = request.Attributes.Select(x => new ProductAttribute
             {
                 Id = Guid.NewGuid(),
                 ProductId = product.Id,
@@ -45,22 +45,22 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand>
             }).ToList();
         }
 
-        if(request.Variants?.Any() ?? false)
+        if (request.Variants?.Any() ?? false)
         {
-            product.Variants= request.Variants.Select(x => new ProductVariant
+            product.Variants = request.Variants.Select(x => new ProductVariant
             {
                 Id = Guid.NewGuid(),
                 ProductId = product.Id,
                 VariantId = x.VariantId,
                 Precio = x.Precio,
-                Stock = x.Stock                
+                Stock = x.Stock
             }).ToList();
         }
-        
+
         _unitOfWork.Repository<Product>().Add(product);
         var result = await _unitOfWork.SaveChangesAsync(cancellationToken);
         if (!result)
             throw new Exception("Error al crear el producto");
-       
+
     }
 }
