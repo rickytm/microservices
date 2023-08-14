@@ -9,7 +9,7 @@ using Localization.Core;
 using MediatR;
 
 namespace Localization.Application.Handlers;
-public class GetPaisesHandler : IRequestHandler<GetPaisesQuery, PaginationVm<PaisDto>>
+public class GetPaisesHandler : IRequestHandler<GetPaisesQuery, PaginationDto<PaisDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ public class GetPaisesHandler : IRequestHandler<GetPaisesQuery, PaginationVm<Pai
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task<PaginationVm<PaisDto>> Handle(GetPaisesQuery request, CancellationToken cancellationToken)
+    public async Task<PaginationDto<PaisDto>> Handle(GetPaisesQuery request, CancellationToken cancellationToken)
     {
         var paisesSpec = new PaisSpecificationParams
         {
@@ -38,7 +38,7 @@ public class GetPaisesHandler : IRequestHandler<GetPaisesQuery, PaginationVm<Pai
         var data = _mapper.Map<IEnumerable<PaisDto>>(paises);
         var paisesByPage = paises.Count();
 
-        var pagination = new PaginationVm<PaisDto>
+        var pagination = new PaginationDto<PaisDto>
         {
             Count = totalPaises,
             Data = data,

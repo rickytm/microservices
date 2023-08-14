@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Localization.Application.Queries
 {
-    public class GetPaisesQuery: PaginationBaseQuery, IRequest<PaginationVm<PaisDto>>
+    public class GetPaisesQuery: PaginationBaseQuery, IRequest<PaginationDto<PaisDto>>
     {
         public string Name { get; set; }
         public string Clave { get; set; }

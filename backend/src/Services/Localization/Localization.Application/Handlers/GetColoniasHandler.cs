@@ -11,7 +11,7 @@ using MediatR;
 
 namespace Localization.Application.Handlers;
 
-public class GetColoniasHandler: IRequestHandler<GetColoniasQuery, PaginationVm<ColoniaDto>>
+public class GetColoniasHandler: IRequestHandler<GetColoniasQuery, PaginationDto<ColoniaDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -22,7 +22,7 @@ public class GetColoniasHandler: IRequestHandler<GetColoniasQuery, PaginationVm<
         _mapper = mapper;
     }
 
-    public async Task<PaginationVm<ColoniaDto>> Handle(GetColoniasQuery request, CancellationToken cancellationToken)
+    public async Task<PaginationDto<ColoniaDto>> Handle(GetColoniasQuery request, CancellationToken cancellationToken)
     {
         var specParams = new ColoniaSpecificationParams
         {
@@ -40,7 +40,7 @@ public class GetColoniasHandler: IRequestHandler<GetColoniasQuery, PaginationVm<
         var data = _mapper.Map<IEnumerable<ColoniaDto>>(colonias);
         var paisesByPage = colonias.Count();
 
-        var pagination = new PaginationVm<ColoniaDto>
+        var pagination = new PaginationDto<ColoniaDto>
         {
             Count = totalColonias,
             Data = data,

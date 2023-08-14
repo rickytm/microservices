@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Localization.Application.Queries;
 
-public class GetCodigoPostalesQuery: PaginationBaseQuery, IRequest<PaginationVm<CodigoPostalDto>>
+public class GetCodigoPostalesQuery: PaginationBaseQuery, IRequest<PaginationDto<CodigoPostalDto>>
 {
     public int? EstadoId { get; set; }
     public int? MunicipioId { get; set; }

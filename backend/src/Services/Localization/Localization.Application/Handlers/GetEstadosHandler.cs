@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Localization.Application.Handlers;
 
-public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationVm<EstadoDto>>
+public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationDto<EstadoDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationVm<E
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task<PaginationVm<EstadoDto>> Handle(GetEstadosQuery request, CancellationToken cancellationToken)
+    public async Task<PaginationDto<EstadoDto>> Handle(GetEstadosQuery request, CancellationToken cancellationToken)
     {
         var estadosSpecParam = new EstadoSpecificationParams
         {
@@ -37,7 +37,7 @@ public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationVm<E
         var data = _mapper.Map<IEnumerable<EstadoDto>>(estados);
         var estadosByPage = estados.Count();
 
-        var pagination = new PaginationVm<EstadoDto>
+        var pagination = new PaginationDto<EstadoDto>
         {            
             Count= totalEstados,
             Data = data,

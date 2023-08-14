@@ -1,6 +1,6 @@
 ﻿namespace Common.Queries;
 
-public class PaginationVm<T> where T : class
+public class PaginationDto<T> where T : class
 {
     public int Count { get; set; }
     public int PageIndex { get; set; }

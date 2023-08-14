@@ -9,7 +9,7 @@ using Localization.Core;
 using MediatR;
 
 namespace Localization.Application.Handlers;
-public class GetCodigoPostalesHandler : IRequestHandler<GetCodigoPostalesQuery, PaginationVm<CodigoPostalDto>>
+public class GetCodigoPostalesHandler : IRequestHandler<GetCodigoPostalesQuery, PaginationDto<CodigoPostalDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -19,7 +19,7 @@ public class GetCodigoPostalesHandler : IRequestHandler<GetCodigoPostalesQuery, 
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    public async Task<PaginationVm<CodigoPostalDto>> Handle(GetCodigoPostalesQuery request, CancellationToken cancellationToken)
+    public async Task<PaginationDto<CodigoPostalDto>> Handle(GetCodigoPostalesQuery request, CancellationToken cancellationToken)
     {
         var specParams = new CodigoPostalSpecificationParams
         {
@@ -40,7 +40,7 @@ public class GetCodigoPostalesHandler : IRequestHandler<GetCodigoPostalesQuery, 
         var data = _mapper.Map<IEnumerable<CodigoPostalDto>>(codigoPostales);
         var paisesByPage = codigoPostales.Count();
 
-        var pagination = new PaginationVm<CodigoPostalDto>
+        var pagination = new PaginationDto<CodigoPostalDto>
         {
             Count = totalCodigoPostales,
             Data = data,
