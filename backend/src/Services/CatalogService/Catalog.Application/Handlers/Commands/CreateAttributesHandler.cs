@@ -24,11 +24,6 @@ public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, 
 
         _unitOfWork.Repository<Core.Attribute,Guid>().Add(newEntity);
 
-        var result = await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        if (!result)
-            throw new Exception("Error al crear el atributo");
-
         return newEntity.Id;
     }
 }

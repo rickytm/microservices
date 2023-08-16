@@ -57,10 +57,7 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid
             }).ToList();
         }
 
-        _unitOfWork.Repository<Product, Guid>().Add(product);
-        var result = await _unitOfWork.SaveChangesAsync(cancellationToken);
-        if (!result)
-            throw new Exception("Error al crear el producto");
+        _unitOfWork.Repository<Product, Guid>().Add(product);   
 
         return product.Id;
 
