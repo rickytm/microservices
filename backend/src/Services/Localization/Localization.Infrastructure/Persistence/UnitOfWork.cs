@@ -18,7 +18,7 @@ public class UnitOfWork : IUnitOfWork
         _context.Dispose();
     }
 
-    public IAsyncRepository<TEntity, Guid> Repository<TEntity, Guid>() where TEntity : class
+    public IAsyncRepository<TEntity, TId> Repository<TEntity, TId>() where TEntity : class
     {
         if (_repositories is null)
         {
@@ -29,12 +29,12 @@ public class UnitOfWork : IUnitOfWork
 
         if (!_repositories.Contains(type))
         {
-            var repositoryType = typeof(AsyncRepository<>);
+            var repositoryType = typeof(AsyncRepository<,>);
             var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
             _repositories.Add(type, repositoryInstance);
         }
 
-        return (IAsyncRepository<TEntity, Guid>)_repositories[type]!;
+        return (IAsyncRepository<TEntity, TId>)_repositories[type]!;
     }
 
     public bool SaveChanges()

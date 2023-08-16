@@ -12,7 +12,7 @@ public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, 
     {
         _unitOfWork = unitOfWork;
     }
-    public async Task<Guid> Handle(CreateAttributesCommand request, CancellationToken cancellationToken)
+    public Task<Guid> Handle(CreateAttributesCommand request, CancellationToken cancellationToken)
     {
         var newEntity = new Core.Attribute 
         {
@@ -24,6 +24,6 @@ public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, 
 
         _unitOfWork.Repository<Core.Attribute,Guid>().Add(newEntity);
 
-        return newEntity.Id;
+        return Task.FromResult(newEntity.Id);
     }
 }

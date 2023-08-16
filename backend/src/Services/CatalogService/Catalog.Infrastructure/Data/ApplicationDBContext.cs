@@ -1,16 +1,39 @@
 ﻿using Catalog.Core;
+using Common.Audit;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
-using System.Net;
 using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Catalog.Infrastructure.Data;
 
 public class ApplicationDBContext : DbContext
 {
-    public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
+    private readonly IAuditService _authAuditService;
+
+    public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options, IAuditService authAuditService) : base(options)
     {
+        _authAuditService = authAuditService;
+    }
+
+    private void SetAuditData()
+    {
+        var username = _authAuditService.GetSessionUser() ?? "system";
+
+        foreach (var entry in ChangeTracker.Entries<CatalogBase>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.CreatedDate = DateTime.UtcNow;
+                    entry.Entity.CreatedBy = username;
+                    break;
+                case EntityState.Modified:
+                    entry.Entity.LastModifiedDate = DateTime.UtcNow;
+                    entry.Entity.LastModifiedBy = username;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

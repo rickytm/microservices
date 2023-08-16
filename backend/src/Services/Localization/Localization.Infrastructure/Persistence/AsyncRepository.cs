@@ -7,7 +7,7 @@ using Localization.Infrastructure.Specification;
 
 namespace Localization.Infrastructure.Persistence;
 
-public class AsyncRepository<T> : IAsyncRepository<T,int> where T : class
+public class AsyncRepository<T, TId> : IAsyncRepository<T, TId> where T : class
 {
     private readonly ApplicationDBContext _context;
 
@@ -33,7 +33,7 @@ public class AsyncRepository<T> : IAsyncRepository<T,int> where T : class
     {
         _context.Set<T>().AddRange(entities);
     }
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(TId id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
         if (entity != null)
@@ -90,7 +90,7 @@ public class AsyncRepository<T> : IAsyncRepository<T,int> where T : class
             return await orderBy(query).ToListAsync();
         return await query.ToListAsync();
     }
-    public async Task<T> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(TId id)
     {
         return (await _context.Set<T>().FindAsync(id))!;
     }
@@ -136,7 +136,7 @@ public class AsyncRepository<T> : IAsyncRepository<T,int> where T : class
     {
         return await ApplySpecification(spec).CountAsync();
     }
-    public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
+    public async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
     {
         IQueryable<T> query = _context.Set<T>();
         if (predicate != null)

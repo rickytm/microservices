@@ -18,5 +18,11 @@ public class UpdateAttributesHandler : IRequestHandler<UpdateAttributesCommand>
         var found = await _unitOfWork.Repository<Core.Attribute,Guid>().GetByIdAsync(request.Id);
         if(found is null)
             throw new NotFoundException(nameof(Core.Attribute), request.Id);
+
+        found.Value = request.Value ??found.Value;
+        found.CategoryId = request.CategoryId;
+        found.Key = request.Key ?? found.Key;
+
+        _unitOfWork.Repository<Core.Attribute, Guid>().Update(found);
     }
 }

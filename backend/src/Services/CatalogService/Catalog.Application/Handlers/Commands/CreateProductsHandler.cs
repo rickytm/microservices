@@ -31,15 +31,15 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid
 
         return productEntity;
     }
-    public async Task<Guid> Handle(CreateProductsCommand request, CancellationToken cancellationToken)
+    public Task<Guid> Handle(CreateProductsCommand request, CancellationToken cancellationToken)
     {
-        var product = MapProductEntity(request);
+        var newEntity = MapProductEntity(request);
         if (request.Attributes?.Any() ?? false)
         {
-            product.Attributes = request.Attributes.Select(x => new ProductAttribute
+            newEntity.Attributes = request.Attributes.Select(x => new ProductAttribute
             {
                 Id = Guid.NewGuid(),
-                ProductId = product.Id,
+                ProductId = newEntity.Id,
                 AttributeId = x.AttributeId,
                 CategoryId = x.CategoryId
             }).ToList();
@@ -47,19 +47,19 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid
 
         if (request.Variants?.Any() ?? false)
         {
-            product.Variants = request.Variants.Select(x => new ProductVariant
+            newEntity.Variants = request.Variants.Select(x => new ProductVariant
             {
                 Id = Guid.NewGuid(),
-                ProductId = product.Id,
+                ProductId = newEntity.Id,
                 VariantId = x.VariantId,
                 Precio = x.Precio,
                 Stock = x.Stock
             }).ToList();
         }
 
-        _unitOfWork.Repository<Product, Guid>().Add(product);   
+        _unitOfWork.Repository<Product, Guid>().Add(newEntity);
 
-        return product.Id;
+        return Task.FromResult(newEntity.Id);
 
     }
 }

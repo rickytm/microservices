@@ -19,7 +19,7 @@ public class UnitOfWork : IUnitOfWork
         _context.Dispose();
     }
 
-    public IAsyncRepository<TEntity,Guid> Repository<TEntity, Guid>() where TEntity : class
+    public IAsyncRepository<TEntity,TId> Repository<TEntity, TId>() where TEntity : class
     {
         if (_repositories is null)
         {
@@ -35,7 +35,7 @@ public class UnitOfWork : IUnitOfWork
             _repositories.Add(type, repositoryInstance);
         }
 
-        return (IAsyncRepository<TEntity, Guid>)_repositories[type]!;
+        return (IAsyncRepository<TEntity, TId>)_repositories[type]!;
     }
 
     public bool SaveChanges()

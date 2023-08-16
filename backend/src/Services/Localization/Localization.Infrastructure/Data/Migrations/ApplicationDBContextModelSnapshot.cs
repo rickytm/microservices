@@ -17,7 +17,7 @@ namespace Localization.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "6.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -47,8 +47,8 @@ namespace Localization.Infrastructure.Data.Migrations
                     b.Property<int?>("EstadoId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -95,8 +95,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -135,8 +135,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -181,8 +181,8 @@ namespace Localization.Infrastructure.Data.Migrations
                     b.Property<int>("EstadoId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -221,8 +221,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("LastModifiedBy")
-                        .HasColumnType("integer");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
