@@ -1,5 +1,5 @@
 ﻿using Catalog.Infrastructure.Persistence;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,6 +1,6 @@
 ﻿using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Specification;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

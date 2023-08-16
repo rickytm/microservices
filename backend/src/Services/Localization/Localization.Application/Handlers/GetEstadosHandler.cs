@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using Localization.Application.Queries;
 using Localization.Application.Responses;

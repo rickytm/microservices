@@ -2,7 +2,7 @@ using AutoMapper;
 using Catalog.Application.Queries;
 using Catalog.Application.Responses;
 using Catalog.Application.Specifications.Attributes;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using MediatR;
 

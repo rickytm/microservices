@@ -3,7 +3,7 @@ using Catalog.Application.Queries;
 using Catalog.Application.Responses;
 using Catalog.Application.Specifications.Brands;
 using Catalog.Core;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using MediatR;
 

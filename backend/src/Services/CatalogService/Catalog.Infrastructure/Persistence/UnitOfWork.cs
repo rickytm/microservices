@@ -1,5 +1,5 @@
 ﻿using Catalog.Infrastructure.Data;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using System.Collections;
 
 namespace Catalog.Infrastructure.Persistence;
@@ -30,7 +30,7 @@ public class UnitOfWork : IUnitOfWork
 
         if (!_repositories.Contains(type))
         {
-            var repositoryType = typeof(AsyncRepository<>);
+            var repositoryType = typeof(AsyncRepository<,>);
             var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
             _repositories.Add(type, repositoryInstance);
         }

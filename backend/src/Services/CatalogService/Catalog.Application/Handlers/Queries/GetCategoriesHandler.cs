@@ -3,7 +3,7 @@ using Catalog.Application.Queries;
 using Catalog.Application.Responses;
 using Catalog.Application.Specifications.Categories;
 using Catalog.Core;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using MediatR;
 namespace Catalog.Application.Handlers.Queries;

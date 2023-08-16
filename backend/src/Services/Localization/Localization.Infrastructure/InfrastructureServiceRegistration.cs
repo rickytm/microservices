@@ -1,4 +1,4 @@
-﻿using Common.Persistence;
+﻿using Common.Persistence.Contracts;
 using Localization.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

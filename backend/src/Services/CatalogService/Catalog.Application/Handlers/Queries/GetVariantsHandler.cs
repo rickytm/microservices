@@ -4,7 +4,7 @@ using Catalog.Application.Queries;
 using Catalog.Application.Responses;
 using Catalog.Application.Specifications.Variants;
 using Catalog.Core;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using MediatR;
 

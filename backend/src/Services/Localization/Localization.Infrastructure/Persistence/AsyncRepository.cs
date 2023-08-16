@@ -1,9 +1,9 @@
-﻿using Common.Persistence;
-using Common.Specifications;
+﻿using Common.Specifications;
 using Localization.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Localization.Infrastructure.Specification;
+using Common.Persistence.Contracts;
 
 namespace Localization.Infrastructure.Persistence;
 

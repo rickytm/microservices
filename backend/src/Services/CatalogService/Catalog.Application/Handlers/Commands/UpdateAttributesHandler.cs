@@ -1,6 +1,6 @@
 ﻿using Catalog.Application.Commands;
 using Common.Exceptions;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using MediatR;
 
 namespace Catalog.Application.Handlers.Commands;

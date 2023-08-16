@@ -1,4 +1,4 @@
-﻿using Common.Persistence;
+﻿using Common.Persistence.Contracts;
 using MediatR;
 using System;
 using System.Collections.Generic;

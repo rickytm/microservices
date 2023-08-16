@@ -1,7 +1,7 @@
 ﻿using Common.Specifications;
 using System.Linq.Expressions;
 
-namespace Common.Persistence;
+namespace Common.Persistence.Contracts;
 
 public interface IAsyncRepository<T, TId> where T : class
 {

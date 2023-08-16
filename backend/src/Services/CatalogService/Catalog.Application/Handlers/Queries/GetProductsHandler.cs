@@ -5,7 +5,7 @@ using Catalog.Application.Responses;
 using Catalog.Application.Specifications.Products;
 using Catalog.Core;
 using Common.Extensions;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using Common.Queries;
 using MediatR;
 

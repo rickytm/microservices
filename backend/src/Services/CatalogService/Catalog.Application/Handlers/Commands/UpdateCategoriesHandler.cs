@@ -1,7 +1,7 @@
 ﻿using Catalog.Application.Commands;
 using Catalog.Core;
 using Common.Exceptions;
-using Common.Persistence;
+using Common.Persistence.Contracts;
 using MediatR;
 
 namespace Catalog.Application.Handlers.Commands;
