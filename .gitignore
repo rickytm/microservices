@@ -364,15 +364,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-backend/.vs/microservices/DesignTimeBuild/.dtbcache.v2
-backend/.vs/microservices/v17/.futdcache.v2
-backend/.vs/microservices/v17/.suo
-backend/.vs/microservices/v17/fileList.bin
-backend/.vs/ProjectEvaluation/microservices.projects.v6.1
-backend/.vs/ProjectEvaluation/microservices.metadata.v6.1
-.vs/microservices/v15/.suo
-backend/.vs/microservices/DesignTimeBuild/.dtbcache.v2
-.vs/
-backend/.vs
-backend/src/Common/bin/
-backend/src/Common/obj/
