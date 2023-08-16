@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{BF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0F9CECA-F5C1-4DD0-A809-BBAEDEA0F572}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
@@ -35,23 +36,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Api", "src\Common.Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Localization", "Localization", "{B1AF5E6A-44D2-40EB-A918-E3E4D941BD79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.Core", "src\Services\Localization\Localization.Core\Localization.Core.csproj", "{398CA54E-6CED-4343-A0F2-D9E0B4273E9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localization.Core", "src\Services\Localization\Localization.Core\Localization.Core.csproj", "{398CA54E-6CED-4343-A0F2-D9E0B4273E9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.Application", "src\Services\Localization\Localization.Application\Localization.Application.csproj", "{269B4A35-A230-4B1E-B7CB-0D8C62FDAF68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localization.Application", "src\Services\Localization\Localization.Application\Localization.Application.csproj", "{269B4A35-A230-4B1E-B7CB-0D8C62FDAF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.Infrastructure", "src\Services\Localization\Localization.Infrastructure\Localization.Infrastructure.csproj", "{899FA415-8926-4E67-9523-24316AFED598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localization.Infrastructure", "src\Services\Localization\Localization.Infrastructure\Localization.Infrastructure.csproj", "{899FA415-8926-4E67-9523-24316AFED598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization.API", "src\Services\Localization\Localization.API\Localization.API.csproj", "{B6F0B294-76CF-41A0-A13D-F17B2D85C1AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Localization.API", "src\Services\Localization\Localization.API\Localization.API.csproj", "{B6F0B294-76CF-41A0-A13D-F17B2D85C1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayService", "src\Services\GatewayService\GatewayService.csproj", "{2C23EB09-612F-433C-A378-604AFD0E74EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayService", "src\Services\GatewayService\GatewayService.csproj", "{2C23EB09-612F-433C-A378-604AFD0E74EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Core", "src\Services\CatalogService\Catalog.Core\Catalog.Core.csproj", "{00319CEE-F45D-4072-A034-C617CC3C73FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Core", "src\Services\CatalogService\Catalog.Core\Catalog.Core.csproj", "{00319CEE-F45D-4072-A034-C617CC3C73FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "src\Services\CatalogService\Catalog.API\Catalog.API.csproj", "{F8667F96-0679-43CF-9535-96CDBD33ADA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "src\Services\CatalogService\Catalog.API\Catalog.API.csproj", "{F8667F96-0679-43CF-9535-96CDBD33ADA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application", "src\Services\CatalogService\Catalog.Application\Catalog.Application.csproj", "{FDC08795-EEA4-4CE6-AC09-33DF0E398A05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Application", "src\Services\CatalogService\Catalog.Application\Catalog.Application.csproj", "{FDC08795-EEA4-4CE6-AC09-33DF0E398A05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "src\Services\CatalogService\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{2C6749CA-61D6-4DEE-B5DA-4E4862C0F9EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Infrastructure", "src\Services\CatalogService\Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{2C6749CA-61D6-4DEE-B5DA-4E4862C0F9EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

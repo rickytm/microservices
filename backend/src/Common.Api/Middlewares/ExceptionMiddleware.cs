@@ -1,5 +1,5 @@
 ﻿using Common.Api.Errors;
-using Common.Api.Exceptions;
+using Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;

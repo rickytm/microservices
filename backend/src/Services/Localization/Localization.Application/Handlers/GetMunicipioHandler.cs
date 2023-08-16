@@ -32,8 +32,8 @@ public class GetMunicipioHandler : IRequestHandler<GetMunicipiosQuery, Paginatio
             Sort = request.Sort,
         };
 
-        var municipios = await _unitOfWork.Repository<Municipio>().GetAllWithSpec(new MunicipioSpecification(municipioSpec));
-        var totalMunicipios = await _unitOfWork.Repository<Municipio>().CountAsync(new MunicipioForCountingSpecification(municipioSpec));
+        var municipios = await _unitOfWork.Repository<Municipio,int>().GetAllWithSpec(new MunicipioSpecification(municipioSpec));
+        var totalMunicipios = await _unitOfWork.Repository<Municipio,int>().CountAsync(new MunicipioForCountingSpecification(municipioSpec));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalMunicipios) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
         var data = _mapper.Map<IEnumerable<MunicipioDto>>(municipios);

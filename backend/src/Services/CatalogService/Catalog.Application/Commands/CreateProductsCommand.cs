@@ -2,7 +2,7 @@ using Catalog.Application.Responses;
 using MediatR;
 
 namespace Catalog.Application.Commands;
-public class CreateProductsCommand:IRequest
+public class CreateProductsCommand:IRequest<Guid>
 {
     public string Nombre { get; set; }
     public string Descripcion { get; set; }

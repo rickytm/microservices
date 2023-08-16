@@ -19,7 +19,7 @@ public class UnitOfWork : IUnitOfWork
         _context.Dispose();
     }
 
-    public IAsyncRepository<TEntity> Repository<TEntity>() where TEntity : class
+    public IAsyncRepository<TEntity,Guid> Repository<TEntity, Guid>() where TEntity : class
     {
         if (_repositories is null)
         {
@@ -35,7 +35,7 @@ public class UnitOfWork : IUnitOfWork
             _repositories.Add(type, repositoryInstance);
         }
 
-        return (IAsyncRepository<TEntity>)_repositories[type]!;
+        return (IAsyncRepository<TEntity, Guid>)_repositories[type]!;
     }
 
     public bool SaveChanges()
@@ -61,5 +61,5 @@ public class UnitOfWork : IUnitOfWork
         {
             throw new Exception("Error en transacción", e);
         }
-    }
+    }  
 }

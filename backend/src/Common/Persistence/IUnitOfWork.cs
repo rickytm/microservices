@@ -2,7 +2,7 @@
 
 public interface IUnitOfWork : IDisposable
 {
-    IAsyncRepository<TEntity> Repository<TEntity>() where TEntity : class;
+    IAsyncRepository<TEntity, TId> Repository<TEntity, TId>() where TEntity : class;
     Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);    
     bool SaveChanges();
 }

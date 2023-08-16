@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Catalog.Infrastructure.Persistence;
-public class AsyncRepository<T> : IAsyncRepository<T> where T : class
+public class AsyncRepository<T> : IAsyncRepository<T,Guid> where T : class
 {
     private readonly ApplicationDBContext _context;
 
@@ -32,7 +32,7 @@ public class AsyncRepository<T> : IAsyncRepository<T> where T : class
     {
         _context.Set<T>().AddRange(entities);
     }
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
         if (entity != null)
@@ -89,7 +89,7 @@ public class AsyncRepository<T> : IAsyncRepository<T> where T : class
             return await orderBy(query).ToListAsync();
         return await query.ToListAsync();
     }
-    public async Task<T> GetByIdAsync(int id)
+    public async Task<T> GetByIdAsync(Guid id)
     {
         return (await _context.Set<T>().FindAsync(id))!;
     }

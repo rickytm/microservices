@@ -7,7 +7,7 @@ using Localization.Infrastructure.Specification;
 
 namespace Localization.Infrastructure.Persistence;
 
-public class AsyncRepository<T> : IAsyncRepository<T> where T : class
+public class AsyncRepository<T> : IAsyncRepository<T,int> where T : class
 {
     private readonly ApplicationDBContext _context;
 

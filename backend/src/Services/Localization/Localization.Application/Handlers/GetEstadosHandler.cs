@@ -30,8 +30,8 @@ public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationDto<
             Search=request.Search,
             Sort=request.Sort,
         };
-        var estados = await _unitOfWork.Repository<Estado>().GetAllWithSpec(new EstadoSpecification(estadosSpecParam));
-        var totalEstados = await _unitOfWork.Repository<Estado>().CountAsync(new EstadoForCountingSpecification(estadosSpecParam));
+        var estados = await _unitOfWork.Repository<Estado,int>().GetAllWithSpec(new EstadoSpecification(estadosSpecParam));
+        var totalEstados = await _unitOfWork.Repository<Estado,int>().CountAsync(new EstadoForCountingSpecification(estadosSpecParam));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalEstados) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
         var data = _mapper.Map<IEnumerable<EstadoDto>>(estados);

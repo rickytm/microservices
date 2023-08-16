@@ -31,8 +31,8 @@ public class GetPaisesHandler : IRequestHandler<GetPaisesQuery, PaginationDto<Pa
             Sort = request.Sort,
         };
 
-        var paises = await _unitOfWork.Repository<Pais>().GetAllWithSpec(new PaisSpecification(paisesSpec));
-        var totalPaises = await _unitOfWork.Repository<Pais>().CountAsync(new PaisForCountingSpecification(paisesSpec));
+        var paises = await _unitOfWork.Repository<Pais,int>().GetAllWithSpec(new PaisSpecification(paisesSpec));
+        var totalPaises = await _unitOfWork.Repository<Pais,int>().CountAsync(new PaisForCountingSpecification(paisesSpec));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalPaises) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
         var data = _mapper.Map<IEnumerable<PaisDto>>(paises);

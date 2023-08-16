@@ -33,8 +33,8 @@ public class GetCodigoPostalesHandler : IRequestHandler<GetCodigoPostalesQuery, 
             Search = request.Search,
             Sort = request.Sort
         };
-        var codigoPostales = await _unitOfWork.Repository<CodigoPostal>().GetAllWithSpec(new CodigoPostalSpecification(specParams));
-        var totalCodigoPostales = await _unitOfWork.Repository<CodigoPostal>().CountAsync(new CodigoPostalForCountingSpecification(specParams));
+        var codigoPostales = await _unitOfWork.Repository<CodigoPostal,int>().GetAllWithSpec(new CodigoPostalSpecification(specParams));
+        var totalCodigoPostales = await _unitOfWork.Repository<CodigoPostal,int>().CountAsync(new CodigoPostalForCountingSpecification(specParams));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalCodigoPostales) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
         var data = _mapper.Map<IEnumerable<CodigoPostalDto>>(codigoPostales);

@@ -33,8 +33,8 @@ public class GetColoniasHandler: IRequestHandler<GetColoniasQuery, PaginationDto
             Search = request.Search,
             Sort = request.Sort
         };
-        var colonias = await _unitOfWork.Repository<Colonia>().GetAllWithSpec(new ColoniaSpecification(specParams));
-        var totalColonias = await _unitOfWork.Repository<Colonia>().CountAsync(new ColoniaForCountingSpecification(specParams));
+        var colonias = await _unitOfWork.Repository<Colonia,int>().GetAllWithSpec(new ColoniaSpecification(specParams));
+        var totalColonias = await _unitOfWork.Repository<Colonia,int>().CountAsync(new ColoniaForCountingSpecification(specParams));
         var rounded = Math.Ceiling(Convert.ToDecimal(totalColonias) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
         var data = _mapper.Map<IEnumerable<ColoniaDto>>(colonias);
