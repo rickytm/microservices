@@ -1,7 +1,7 @@
 ﻿using Common.Api;
 using Common.Queries;
 using Localization.Application.Queries;
-using Localization.Application.Responses;
+using Localization.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

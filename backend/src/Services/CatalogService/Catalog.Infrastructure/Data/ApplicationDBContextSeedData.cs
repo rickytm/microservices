@@ -1,16 +1,10 @@
-﻿using Catalog.Core;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Catalog.Infrastructure.Data
 {
-    public class ApplicationDBContextData
+    public class ApplicationDBContextSeedData
     {
-        public static async Task InitDB(ApplicationDBContext context, ILoggerFactory loggerFactory)
+        public static async Task InitDb(ApplicationDBContext context, ILogger logger)
         {
             try
             {
@@ -51,7 +45,6 @@ namespace Catalog.Infrastructure.Data
             }
             catch(Exception e) 
             {
-                var logger = loggerFactory.CreateLogger<ApplicationDBContextData>();
                 logger.LogError(e.Message);
             }
         }

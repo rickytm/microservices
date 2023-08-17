@@ -2,6 +2,7 @@
 using Catalog.Application.Behaviors;
 using Catalog.Application.Mapper;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -9,7 +10,7 @@ namespace Catalog.Application
 {
     public static class ApplicationServiceRegistration
     {
-        public static IServiceCollection AddCatalogApplication(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             var mapperConfig = new MapperConfiguration(mc =>
             {

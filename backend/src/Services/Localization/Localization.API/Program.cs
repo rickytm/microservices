@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Common.Api.Middlewares;
 using Localization.API.Extensions;
 using Localization.Application;
@@ -15,17 +16,20 @@ builder.Services.AddLocalizationApiServices();
 builder.Services.AddConfigDBServices(builder.Configuration, builder.Environment.IsDevelopment());
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddRateLimitServices(builder.Configuration);
 
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseIpRateLimiting();
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseMiddleware<ExceptionMiddleware>();
-
+app.UseCors("CorsPolicy");
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
