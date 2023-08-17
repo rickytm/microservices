@@ -56,7 +56,12 @@ namespace Localization.API.Extensions
                     .MigrationsAssembly(typeof(ApplicationDBContext).Assembly.FullName));
 
                 // Agrega un logger para registrar los comandos SQL
-                var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+                var loggerFactory = LoggerFactory.Create(builder =>
+                {
+                    builder
+                        .AddConsole()
+                        .SetMinimumLevel(LogLevel.Debug);
+                });
                 optionsBuilder.UseLoggerFactory(loggerFactory);
 
                 optionsBuilder.LogTo(

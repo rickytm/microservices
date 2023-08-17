@@ -34,7 +34,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -44,8 +45,12 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
+                    b.Property<int>("EstadoId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -59,6 +64,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(150)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
 
                     b.HasIndex("MunicipioId");
 
@@ -80,7 +87,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -91,7 +99,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -120,7 +129,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -131,7 +141,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -163,7 +174,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -177,7 +189,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -206,7 +219,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -217,7 +231,8 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<string>("LastModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("LastModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -234,11 +249,19 @@ namespace Localization.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Localization.Core.CodigoPostal", b =>
                 {
+                    b.HasOne("Localization.Core.Estado", "Estado")
+                        .WithMany()
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Localization.Core.Municipio", "Municipio")
                         .WithMany("CodigosPostales")
                         .HasForeignKey("MunicipioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Estado");
 
                     b.Navigation("Municipio");
                 });

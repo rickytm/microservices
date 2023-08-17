@@ -6,6 +6,7 @@ using Localization.Application.Responses;
 using Localization.Application.Specifications.Estados;
 using Localization.Core;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Localization.Application.Handlers;
 
@@ -21,8 +22,10 @@ public class GetEstadosHandler : IRequestHandler<GetEstadosQuery, PaginationDto<
     }
     public async Task<PaginationDto<EstadoDto>> Handle(GetEstadosQuery request, CancellationToken cancellationToken)
     {
+        var paises = await _unitOfWork.Repository<Pais,int>().GetAll().Where(x => x.Name.Contains(request.NombrePais) || x.Clave.Contains(request.NombrePais)).Select(x => x.Id).ToListAsync();
         var estadosSpecParam = new EstadoSpecificationParams
         {
+            NombrePais = request.NombrePais,
             PageIndex = request.PageIndex,
             PageSize = request.PageSize,
             NombreEstado = request.NombreEstado,

@@ -1,6 +1,5 @@
 using Common.Api.Middlewares;
 using Localization.API.Extensions;
-using Localization.API.Extensions.CustomFormatters;
 using Localization.Application;
 using Localization.Infrastructure;
 using Localization.Infrastructure.Data;

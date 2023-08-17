@@ -19,6 +19,8 @@ public class PaisConfiguration : IEntityTypeConfiguration<Pais>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+        builder.Property(p => p.CreatedBy).HasMaxLength(50);
+        builder.Property(p => p.LastModifiedBy).HasMaxLength(50);
 
         builder.HasMany(p => p.Estados)
             .WithOne(e => e.Pais)
@@ -42,6 +44,8 @@ public class EstadoConfiguration : IEntityTypeConfiguration<Estado>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+        builder.Property(p => p.CreatedBy).HasMaxLength(50);
+        builder.Property(p => p.LastModifiedBy).HasMaxLength(50);
 
         builder.HasMany(p => p.Municipios)
             .WithOne(e=> e.Estado)
@@ -66,6 +70,8 @@ public class MunicipioConfiguration : IEntityTypeConfiguration<Municipio>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+        builder.Property(p => p.CreatedBy).HasMaxLength(50);
+        builder.Property(p => p.LastModifiedBy).HasMaxLength(50);
 
         builder.HasMany(p => p.CodigosPostales)
             .WithOne(p => p.Municipio)
@@ -91,7 +97,9 @@ public class CodigoPostalConfiguration : IEntityTypeConfiguration<CodigoPostal>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
-        
+        builder.Property(p => p.CreatedBy).HasMaxLength(50);
+        builder.Property(p => p.LastModifiedBy).HasMaxLength(50);
+
         builder.HasMany(p => p.Colonias)
             .WithOne(p => p.CodigoPostal)
             .HasForeignKey(p => p.CodigoPostalId)
@@ -115,5 +123,7 @@ public class ColoniaConfiguration : IEntityTypeConfiguration<Colonia>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+        builder.Property(p => p.CreatedBy).HasMaxLength(50);
+        builder.Property(p => p.LastModifiedBy).HasMaxLength(50);
     }
 }
