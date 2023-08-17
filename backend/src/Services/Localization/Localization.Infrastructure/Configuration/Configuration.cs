@@ -19,6 +19,12 @@ public class PaisConfiguration : IEntityTypeConfiguration<Pais>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+
+        builder.HasMany(p => p.Estados)
+            .WithOne(e => e.Pais)
+            .HasForeignKey(e => e.PaisId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 public class EstadoConfiguration : IEntityTypeConfiguration<Estado>
@@ -36,6 +42,12 @@ public class EstadoConfiguration : IEntityTypeConfiguration<Estado>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
+
+        builder.HasMany(p => p.Municipios)
+            .WithOne(e=> e.Estado)
+            .HasForeignKey(e => e.EstadoId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 
@@ -54,12 +66,12 @@ public class MunicipioConfiguration : IEntityTypeConfiguration<Municipio>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
-        builder
-        .HasMany(p => p.CodigosPostales)
-        .WithOne(p => p.Municipio)
-        .HasForeignKey(p => p.MunicipioId)
-        .IsRequired()
-        .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(p => p.CodigosPostales)
+            .WithOne(p => p.Municipio)
+            .HasForeignKey(p => p.MunicipioId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
 
     }
 }
@@ -79,12 +91,12 @@ public class CodigoPostalConfiguration : IEntityTypeConfiguration<CodigoPostal>
         builder.Property(p => p.Description).IsRequired().HasMaxLength(200);
         builder.Property(p => p.CreatedDate).HasColumnType("timestamp without time zone");
         builder.Property(p => p.LastModifiedDate).HasColumnType("timestamp without time zone");
-        builder
-        .HasMany(p => p.Colonias)
-        .WithOne(p => p.CodigoPostal)
-        .HasForeignKey(p => p.CodigoPostalId)
-        .IsRequired()
-        .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasMany(p => p.Colonias)
+            .WithOne(p => p.CodigoPostal)
+            .HasForeignKey(p => p.CodigoPostalId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 

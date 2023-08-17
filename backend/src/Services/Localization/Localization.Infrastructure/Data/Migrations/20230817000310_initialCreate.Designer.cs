@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Localization.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20230816071848_initialCreate")]
+    [Migration("20230817000310_initialCreate")]
     partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,9 +46,6 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("character varying(200)");
 
-                    b.Property<int?>("EstadoId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("text");
 
@@ -64,8 +61,6 @@ namespace Localization.Infrastructure.Data.Migrations
                         .HasColumnType("character varying(150)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EstadoId");
 
                     b.HasIndex("MunicipioId");
 
@@ -241,10 +236,6 @@ namespace Localization.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Localization.Core.CodigoPostal", b =>
                 {
-                    b.HasOne("Localization.Core.Estado", null)
-                        .WithMany("CodigosPostales")
-                        .HasForeignKey("EstadoId");
-
                     b.HasOne("Localization.Core.Municipio", "Municipio")
                         .WithMany("CodigosPostales")
                         .HasForeignKey("MunicipioId")
@@ -294,8 +285,6 @@ namespace Localization.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Localization.Core.Estado", b =>
                 {
-                    b.Navigation("CodigosPostales");
-
                     b.Navigation("Municipios");
                 });
 

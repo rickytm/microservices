@@ -2,5 +2,5 @@
 
 public class Pais : Localization
 {
-    public virtual ICollection<Estado>? Estados { get; set; }
+    public virtual ICollection<Estado> Estados { get; set; } = new List<Estado>();
 }

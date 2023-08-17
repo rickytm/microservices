@@ -6,4 +6,5 @@ public class EstadoSpecificationParams : SpecificationParams
 {
     public int? PaisId { get; set; }
     public string NombreEstado { get; set; }
+    public string NombrePais { get; set; }
 }

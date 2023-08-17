@@ -20,17 +20,14 @@ public class UnitOfWork : IUnitOfWork
 
     public IAsyncRepository<TEntity, TId> Repository<TEntity, TId>() where TEntity : class
     {
-        if (_repositories is null)
-        {
-            _repositories = new Hashtable();
-        }
+        _repositories ??= new Hashtable();
 
         var type = typeof(TEntity).Name;
 
         if (!_repositories.Contains(type))
         {
-            var repositoryType = typeof(AsyncRepository<,>);
-            var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
+            var repositoryType = typeof(AsyncRepository<,>).MakeGenericType(typeof(TEntity), typeof(TId));
+            var repositoryInstance = Activator.CreateInstance(repositoryType, _context);
             _repositories.Add(type, repositoryInstance);
         }
 

@@ -83,7 +83,6 @@ namespace Localization.Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false),
                     MunicipioId = table.Column<int>(type: "integer", nullable: false),
-                    EstadoId = table.Column<int>(type: "integer", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     LastModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -95,11 +94,6 @@ namespace Localization.Infrastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CodigosPostales", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CodigosPostales_Estados_EstadoId",
-                        column: x => x.EstadoId,
-                        principalTable: "Estados",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CodigosPostales_Municipios_MunicipioId",
                         column: x => x.MunicipioId,
@@ -132,11 +126,6 @@ namespace Localization.Infrastructure.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CodigosPostales_EstadoId",
-                table: "CodigosPostales",
-                column: "EstadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CodigosPostales_MunicipioId",
