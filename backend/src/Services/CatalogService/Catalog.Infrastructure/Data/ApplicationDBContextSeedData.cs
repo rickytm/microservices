@@ -36,12 +36,12 @@ namespace Catalog.Infrastructure.Data
                     await context.SaveChangesAsync();
                 }
 
-                if (!context.Products!.Any())
-                {
-                    var products = LoadData.GetListProducts();
-                    await context.Products!.AddRangeAsync(products);
-                    await context.SaveChangesAsync();
-                }
+                //if (!context.Products!.Any())
+                //{
+                //    var products = LoadData.GetListProducts();
+                //    await context.Products!.AddRangeAsync(products);
+                //    await context.SaveChangesAsync();
+                //}
             }
             catch(Exception e) 
             {
