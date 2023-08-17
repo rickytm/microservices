@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Localization.Application.Responses;
+using Localization.Application.Dtos;
 using Localization.Core;
 
 namespace Localization.Application.Mapper;

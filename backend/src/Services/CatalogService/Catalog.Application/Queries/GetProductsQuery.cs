@@ -1,5 +1,5 @@
 ﻿
-using Catalog.Application.Responses;
+using Catalog.Application.Dtos;
 using Catalog.Core;
 using Common.Queries;
 using MediatR;

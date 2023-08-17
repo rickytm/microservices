@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Catalog.Infrastructure.Persistence;
-public class AsyncRepository<T,TId> : IAsyncRepository<T,TId> where T : class
+public class AsyncRepository<T, TId> : IAsyncRepository<T, TId> where T : class
 {
     private readonly ApplicationDBContext _context;
 
@@ -135,7 +135,7 @@ public class AsyncRepository<T,TId> : IAsyncRepository<T,TId> where T : class
     {
         return await ApplySpecification(spec).CountAsync();
     }
-    public async Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null)
+    public async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
     {
         IQueryable<T> query = _context.Set<T>();
         if (predicate != null)

@@ -1,7 +1,6 @@
 using AutoMapper;
-using Catalog.Application.Responses;
+using Catalog.Application.Dtos;
 using Catalog.Core;
-using System;
 
 namespace Catalog.Application.Mapper;
 

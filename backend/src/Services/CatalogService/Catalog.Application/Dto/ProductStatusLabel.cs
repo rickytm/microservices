@@ -1,4 +1,4 @@
-﻿namespace Catalog.Application.Responses;
+﻿namespace Catalog.Application.Dtos;
 
 public static class ProductStatusLabel
 {

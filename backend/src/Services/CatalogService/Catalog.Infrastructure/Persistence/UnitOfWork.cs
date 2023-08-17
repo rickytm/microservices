@@ -19,7 +19,7 @@ public class UnitOfWork : IUnitOfWork
         _context.Dispose();
     }
 
-    public IAsyncRepository<TEntity,TId> Repository<TEntity, TId>() where TEntity : class
+    public IAsyncRepository<TEntity, TId> Repository<TEntity, TId>() where TEntity : class
     {
         _repositories ??= new Hashtable();
 

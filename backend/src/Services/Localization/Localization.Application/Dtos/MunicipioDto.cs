@@ -1,5 +1,5 @@
 ﻿
-namespace Localization.Application.Responses;
+namespace Localization.Application.Dtos;
 
 public class MunicipioDto : LocalizationDto
 {

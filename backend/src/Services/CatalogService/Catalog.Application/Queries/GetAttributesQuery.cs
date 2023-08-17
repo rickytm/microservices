@@ -1,4 +1,4 @@
-using Catalog.Application.Responses;
+using Catalog.Application.Dtos;
 using Common.Queries;
 using MediatR;
 

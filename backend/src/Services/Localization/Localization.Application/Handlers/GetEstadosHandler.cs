@@ -2,7 +2,7 @@
 using Common.Persistence.Contracts;
 using Common.Queries;
 using Localization.Application.Queries;
-using Localization.Application.Responses;
+using Localization.Application.Dtos;
 using Localization.Application.Specifications.Estados;
 using Localization.Core;
 using MediatR;

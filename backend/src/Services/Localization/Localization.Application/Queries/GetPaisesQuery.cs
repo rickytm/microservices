@@ -1,5 +1,5 @@
 ﻿using Common.Queries;
-using Localization.Application.Responses;
+using Localization.Application.Dtos;
 using MediatR;
 
 namespace Localization.Application.Queries

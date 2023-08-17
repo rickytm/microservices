@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Catalog.Application.Queries;
-using Catalog.Application.Responses;
+using Catalog.Application.Dtos;
 using Catalog.Application.Specifications.Categories;
 using Catalog.Core;
 using Common.Persistence.Contracts;
