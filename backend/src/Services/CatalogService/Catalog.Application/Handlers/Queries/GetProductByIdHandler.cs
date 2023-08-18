@@ -40,17 +40,18 @@ public class GetProductByIdHandler : IRequestHandler<GetProductByIdQuery, Produc
                CategoryNombre = x.Category!.Nombre,
                Stock = x.Stock,
                Rating = x.Rating,
-               Vendedor = x.Vendedor,               
-               Attributes = x.Attributes!.Select(a => new ProductAttributeDto(
-                   a.Id, //Id
-                   x.Id, //ProductId
-                   x.CategoryId, //CategoryId
-                   a.AttributeId, //AttributeId
-                   a.Attribute!.Key, //Key
-                   a.Attribute!.Value, //Value
-                   x.Nombre, //ProductName
-                   x.Category!.Nombre //CategoryName
-               )).ToList(),
+               Vendedor = x.Vendedor,
+               Attributes = x.Attributes!.Select(a => new ProductAttributeDto
+               {
+                   Id = a.Id,
+                   ProductId = x.Id,
+                   ProductName = x.Nombre,
+                   CategoryId = x.CategoryId,
+                   CategoryName = x.Category!.Nombre,
+                   AttributeId = a.AttributeId,
+                   Key = a.Attribute!.Key,
+                   Value = a.Attribute!.Value
+               }).ToList(),
                Variants = x.Variants!.Select(v => new ProductVariantDto
                {
                    Id = v.Id,

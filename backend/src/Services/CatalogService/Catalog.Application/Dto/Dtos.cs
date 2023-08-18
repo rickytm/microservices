@@ -9,13 +9,56 @@ public static class ProductStatusLabel
 }
 
 
-public sealed record AttributeDto(Guid Id, Guid CategoryId, string Key, string Value);
-public sealed record VariantDto(Guid Id, string Nombre);
-public sealed record AttributeGroupedDto(string Key, string Value, IReadOnlyList<AttributeValueDto> Values);
-public sealed record AttributeValueDto(Guid Id, Guid CategoryId, string Value, string Key);
-public sealed record BrandDto(Guid Id, string Nombre);
-public sealed record CategoryDto(Guid Id, Guid? ParentId, string ParentName, string Nombre, IReadOnlyList<AttributeDto> Attributes, IReadOnlyList<AttributeGroupedDto> AttributesGrouped);
-public sealed record ProductAttributeDto(Guid Id, Guid ProductId, Guid CategoryId, Guid AttributeId, string Key, string Value, string ProductName, string CategoryName);
+public sealed record AttributeDto
+{
+    public Guid Id { get; set; }
+    public Guid CategoryId { get; set; }
+    public string Key { get; set; }
+    public string Value { get; set; }
+}
+public sealed record VariantDto
+{
+    public Guid Id { get; set; }
+    public string Nombre { get; set; }
+}
+public sealed record AttributeGroupedDto
+{
+    public string Key { get; set; }
+    public string Value { get; set; }
+    public IReadOnlyList<AttributeValueDto> Values { get; set; }
+}
+public sealed record AttributeValueDto
+{
+    public Guid Id { get; set; }
+    public Guid CategoryId { get; set; }
+    public string Value { get; set; }
+    public string Key { get; set; }
+}
+public sealed record BrandDto
+{
+    public Guid Id { get; set; }
+    public string Nombre { get; set; }
+}
+public sealed record CategoryDto
+{
+    public Guid Id { get; set; }
+    public Guid? ParentId { get; set; }
+    public string ParentName { get; set; }
+    public string Nombre { get; set; }
+    public IReadOnlyList<AttributeDto> Attributes { get; set; }
+    public IReadOnlyList<AttributeGroupedDto> AttributesGrouped { get; set; }
+}
+public sealed record ProductAttributeDto
+{
+    public Guid Id { get; set; }
+    public Guid ProductId { get; set; }
+    public Guid CategoryId { get; set; }
+    public Guid AttributeId { get; set; }
+    public string Key { get; set; }
+    public string Value { get; set; }
+    public string ProductName { get; set; }
+    public string CategoryName { get; set; }
+}
 public sealed record ProductDto
 {
     public Guid Id { get; set; }
