@@ -564,7 +564,7 @@ public class LoadData
             },
         };
 
-        return productsproducts;
+        return productsproducts.Select(x => { x.Id = Guid.NewGuid(); return x; }).ToList(); ;
 
     }
 }

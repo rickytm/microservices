@@ -14,6 +14,18 @@ public class ApplicationDBContext : DbContext
         _authAuditService = authAuditService;
     }
 
+    public override int SaveChanges()
+    {
+        SetAuditData();
+        return base.SaveChanges();
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        SetAuditData();
+        return await base.SaveChangesAsync(cancellationToken);
+        
+    }   
     private void SetAuditData()
     {
         var username = _authAuditService.GetSessionUser() ?? "system";

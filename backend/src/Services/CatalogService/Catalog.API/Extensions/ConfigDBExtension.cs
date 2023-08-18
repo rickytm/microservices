@@ -59,7 +59,7 @@ namespace Catalog.API.Extensions
                 {
                     builder
                         .AddConsole()
-                        .SetMinimumLevel(LogLevel.Debug);
+                        .SetMinimumLevel(LogLevel.Information);
                 });
                 optionsBuilder.UseLoggerFactory(loggerFactory);
 

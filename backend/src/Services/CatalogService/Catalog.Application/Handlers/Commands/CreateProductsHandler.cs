@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Catalog.Application.Commands;
+using Catalog.Application.Dtos;
 using Catalog.Core;
+using Common.CQRS;
 using Common.Persistence.Contracts;
 using MediatR;
 
 namespace Catalog.Application.Handlers.Commands;
 
-public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid>
+public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Result<ProductDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -31,7 +33,7 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid
 
         return productEntity;
     }
-    public Task<Guid> Handle(CreateProductsCommand request, CancellationToken cancellationToken)
+    public Task<Result<ProductDto>> Handle(CreateProductsCommand request, CancellationToken cancellationToken)
     {
         var newEntity = MapProductEntity(request);
         if (request.Attributes?.Any() ?? false)
@@ -59,7 +61,7 @@ public class CreateProductsHandler : IRequestHandler<CreateProductsCommand, Guid
 
         _unitOfWork.Repository<Product, Guid>().Add(newEntity);
 
-        return Task.FromResult(newEntity.Id);
+        return Task.FromResult(Result<ProductDto>.Success(_mapper.Map<ProductDto>(newEntity)));
 
     }
 }

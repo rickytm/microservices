@@ -1,20 +1,26 @@
-﻿using Catalog.Application.Commands;
+﻿using AutoMapper;
+using Catalog.Application.Commands;
+using Catalog.Application.Dtos;
+using Common.CQRS;
 using Common.Persistence.Contracts;
 using MediatR;
 
 namespace Catalog.Application.Handlers.Commands;
 
-public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, Guid>
+public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, Result<AttributeDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public CreateAttributesHandler(IUnitOfWork unitOfWork)
+    public CreateAttributesHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
-    public Task<Guid> Handle(CreateAttributesCommand request, CancellationToken cancellationToken)
+
+    Task<Result<AttributeDto>> IRequestHandler<CreateAttributesCommand, Result<AttributeDto>>.Handle(CreateAttributesCommand request, CancellationToken cancellationToken)
     {
-        var newEntity = new Core.Attribute 
+        var newEntity = new Core.Attribute
         {
             Id = Guid.NewGuid(),
             CategoryId = request.CategoryId,
@@ -22,8 +28,7 @@ public class CreateAttributesHandler : IRequestHandler<CreateAttributesCommand, 
             Value = request.Value,
         };
 
-        _unitOfWork.Repository<Core.Attribute,Guid>().Add(newEntity);
-
-        return Task.FromResult(newEntity.Id);
+        _unitOfWork.Repository<Core.Attribute, Guid>().Add(newEntity);
+        return Task.FromResult(Result<AttributeDto>.Success(_mapper.Map<AttributeDto>(newEntity)));
     }
 }

@@ -20,25 +20,18 @@ public class ProductSpecification : BaseSpecification<Core.Product>
             (!productParams.AttributesIds.Any() || x.Attributes!.Any(x => productParams.AttributesIds.Contains(x.AttributeId)))
         )
     {
-        if (productParams.IsFromAdmin)
-        {
-            AddInclude(p => p.Variants!);
-            AddInclude(p => p.Category!);
-            AddInclude(p => p.Brand!);
-        }
-        else
-        {
-            AddInclude(p => p.Variants!);
-            AddInclude(p => p.Attributes!);
-            AddInclude(p => p.Category!);
-            AddInclude(p => p.Brand!);
-            AddInclude(p => p.Variants!);
+        AddInclude(p => p.Variants!);
+        AddInclude(p => p.Attributes!);
+        AddInclude(p => p.Category!);
+        AddInclude(p => p.Brand!);
+        AddInclude(p => p.Variants!);
 
+        if (!productParams.IsFromAdmin)
+        {
             AddInclude("Variants.Variant");
             AddInclude("Attributes.Category");
             AddInclude("Attributes.Attribute");
         }
-
 
         ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 

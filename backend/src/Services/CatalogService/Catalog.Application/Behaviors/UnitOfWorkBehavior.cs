@@ -1,15 +1,11 @@
-﻿using Common.Persistence.Contracts;
+﻿using Common.CQRS;
+using Common.Persistence.Contracts;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace Catalog.Application.Behaviors
 {
-    public sealed class UnitOfWorkBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+    public sealed class UnitOfWorkBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : ICommand where TResponse : ResultBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -18,21 +14,14 @@ namespace Catalog.Application.Behaviors
             _unitOfWork = unitOfWork;
         }
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-        {
-            if(!typeof(TRequest).Name.EndsWith("Command"))
-            {
-                return await next();
-            }
-
-            using var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+        {  
             var response = await next();
-
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-            transactionScope.Complete();
-
+            if (response is ResultBase { IsSuccess: true })
+            {
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
+            }
+                
             return response;
-
-
         }
     }
 }
