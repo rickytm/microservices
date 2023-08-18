@@ -2,6 +2,7 @@
 using Catalog.Application.Commands;
 using Catalog.Application.Dtos;
 using Catalog.Core;
+using Common.CQRS;
 using Common.Exceptions;
 using Common.Persistence.Contracts;
 using MediatR;
@@ -10,7 +11,7 @@ using System.Linq.Expressions;
 
 namespace Catalog.Application.Handlers.Commands;
 
-public class UpdateProductsHandler : IRequestHandler<UpdateProductsCommand>
+public class UpdateProductsHandler : IRequestHandler<UpdateProductsCommand, Result>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
@@ -106,11 +107,13 @@ public class UpdateProductsHandler : IRequestHandler<UpdateProductsCommand>
         }
     }
 
-    public async Task Handle(UpdateProductsCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateProductsCommand request, CancellationToken cancellationToken)
     {
         var found = await _unitOfWork.Repository<Product,Guid>().GetByIdAsync(request.Id) ?? throw new NotFoundException(nameof(Product), request.Id);
         found = MapProductEntity(request);
         await UpdateProductVariants(request);
         await UpdateProductAttributes(request);
+
+        return Result.Success();
     }
 }

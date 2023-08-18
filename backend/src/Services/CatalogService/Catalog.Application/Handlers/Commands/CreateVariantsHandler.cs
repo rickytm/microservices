@@ -1,20 +1,25 @@
 ﻿
+using AutoMapper;
 using Catalog.Application.Commands;
+using Catalog.Application.Dtos;
 using Catalog.Core;
+using Common.CQRS;
 using Common.Persistence.Contracts;
 using MediatR;
 
 namespace Catalog.Application.Handlers.Commands;
 
-public class CreateVariantsHandler : IRequestHandler<CreateVariantsCommand, Guid>
+public class CreateVariantsHandler : IRequestHandler<CreateVariantsCommand, Result<VariantDto>>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public CreateVariantsHandler(IUnitOfWork unitOfWork)
+    public CreateVariantsHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
-    public Task<Guid> Handle(CreateVariantsCommand request, CancellationToken cancellationToken)
+    public Task<Result<VariantDto>> Handle(CreateVariantsCommand request, CancellationToken cancellationToken)
     {
         var newEntity = new Variant 
         {
@@ -24,6 +29,6 @@ public class CreateVariantsHandler : IRequestHandler<CreateVariantsCommand, Guid
 
         _unitOfWork.Repository<Variant, Guid>().Add(newEntity);
 
-        return Task.FromResult(newEntity.Id);
+        return Task.FromResult(Result<VariantDto>.Success(_mapper.Map<VariantDto>(newEntity)));
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Common.Queries;
 
-public class PaginationBaseQuery
+public record PaginationBaseQuery
 {
-    public string? Search { get; set; }
-    public string? Sort { get; set; }
+    public string Search { get; set; }
+    public string Sort { get; set; }
     public int PageIndex { get; set; } = 1;
     private int _pageSize = 6;
     private const int MaxPageSize = 50;
