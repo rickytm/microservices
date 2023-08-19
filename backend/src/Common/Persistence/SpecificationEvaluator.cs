@@ -1,6 +1,7 @@
 ﻿using Common.Specifications;
 using Microsoft.EntityFrameworkCore;
-namespace Catalog.Infrastructure.Specification;
+
+namespace Common.Persistence;
 
 public class SpecificationEvaluator<T> where T : class
 {
@@ -29,11 +30,11 @@ public class SpecificationEvaluator<T> where T : class
 
         if (spec.IncludeStrings.Any())
         {
-            inputQuery = spec.IncludeStrings!.Aggregate(inputQuery, (current, include) => current.Include(include)).AsSingleQuery().AsNoTracking();
+            inputQuery = spec.IncludeStrings!.Aggregate(inputQuery, (current, include) => current.Include(include)).AsNoTracking();
         }
 
         inputQuery = spec.Includes!.Aggregate(inputQuery,
-                        (current, include) => current.Include(include)).AsSplitQuery().AsNoTracking();
+                        (current, include) => current.Include(include).AsNoTracking());
 
         return inputQuery;
     }

@@ -1,16 +1,15 @@
-﻿using Catalog.Infrastructure.Data;
-using Common.Persistence.Contracts;
+﻿using Common.Persistence.Contracts;
 using System.Collections;
 
-namespace Catalog.Infrastructure.Persistence;
+namespace Common.Persistence;
 
 
 public class UnitOfWork : IUnitOfWork
 {
     private Hashtable _repositories;
-    private readonly ApplicationDBContext _context;
+    private readonly IEntityFrameworkContext _context;
 
-    public UnitOfWork(ApplicationDBContext context)
+    public UnitOfWork(IEntityFrameworkContext context)
     {
         _context = context;
     }
@@ -58,5 +57,6 @@ public class UnitOfWork : IUnitOfWork
         {
             throw new Exception("Error en transacción", e);
         }
-    }  
+    }
 }
+

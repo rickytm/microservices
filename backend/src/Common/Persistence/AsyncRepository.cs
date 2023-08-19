@@ -1,17 +1,15 @@
-﻿using Common.Specifications;
-using Localization.Infrastructure.Data;
+﻿using Common.Persistence.Contracts;
+using Common.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Localization.Infrastructure.Specification;
-using Common.Persistence.Contracts;
 
-namespace Localization.Infrastructure.Persistence;
+namespace Common.Persistence;
 
 public class AsyncRepository<T, TId> : IAsyncRepository<T, TId> where T : class
 {
-    private readonly ApplicationDBContext _context;
+    private readonly IEntityFrameworkContext _context;
 
-    public AsyncRepository(ApplicationDBContext context)
+    public AsyncRepository(IEntityFrameworkContext context)
     {
         _context = context;
     }

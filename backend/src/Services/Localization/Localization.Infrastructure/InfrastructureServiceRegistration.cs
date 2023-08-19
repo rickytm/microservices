@@ -1,5 +1,6 @@
-﻿using Common.Persistence.Contracts;
-using Localization.Infrastructure.Persistence;
+﻿using Common.Persistence;
+using Common.Persistence.Contracts;
+using Localization.Infrastructure.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ public static class InfrastructureServiceRegistration
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IEntityFrameworkContext, ApplicationDBContext>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IAsyncRepository<,>), typeof(AsyncRepository<,>));     
 

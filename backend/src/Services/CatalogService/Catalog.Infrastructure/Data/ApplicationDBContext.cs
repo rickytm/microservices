@@ -1,11 +1,13 @@
 ﻿using Catalog.Core;
 using Common.Audit;
+using Common.Persistence.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 
 namespace Catalog.Infrastructure.Data;
 
-public class ApplicationDBContext : DbContext
+public class ApplicationDBContext : DbContext, IEntityFrameworkContext
 {
     private readonly IAuditService _authAuditService;
 
@@ -61,4 +63,9 @@ public class ApplicationDBContext : DbContext
     public DbSet<ProductAttribute> ProductAttributes { get; set; }
     public DbSet<ProductVariant> ProductVariants { get; set; }    
     public DbSet<Variant> Variants { get; set; }
+
+    EntityEntry<TEntity> IEntityFrameworkContext.Entry<TEntity>(TEntity entity)
+    {
+        return base.Entry(entity);
+    }
 }
