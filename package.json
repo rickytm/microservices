@@ -1,0 +1,23 @@
+{
+	"name": "microservices",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "npm run stop && npm run build && npm run up",
+		"stop": "cd backend && docker-compose down",
+		"build": "cd backend && docker-compose build",
+		"up": "cd backend && docker-compose up -d"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rickytm/microservices.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/rickytm/microservices/issues"
+	},
+	"homepage": "https://github.com/rickytm/microservices#readme"
+}
