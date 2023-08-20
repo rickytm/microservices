@@ -16,6 +16,7 @@ public class CodigoPostalSpecification : BaseSpecification<CodigoPostal>
     {
         AddInclude(x => x.Municipio);
         AddInclude("Municipio.Estado");
+        AddInclude("Municipio.Estado.Pais");
         ApplyPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
         if (!string.IsNullOrEmpty(specParams.Sort))
         {

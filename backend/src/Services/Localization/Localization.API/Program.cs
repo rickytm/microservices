@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Logging.ClearProviders();
 //builder.Logging.AddConsole().AddConsoleFormatter<CustomTimePrefixingFormatter, CustomWrappingConsoleFormatterOptions>();
-builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog.API", Version = "v1" }); });
+builder.Services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Localizacion.API", Version = "v1" }); });
 
 builder.Services.AddLocalizationApiServices();
 builder.Services.AddConfigDBServices(builder.Configuration, builder.Environment.IsDevelopment());

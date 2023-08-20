@@ -12,7 +12,7 @@ builder.Services.AddAuthentication(x =>
 })
     .AddJwtBearer(options =>
     {
-        options.Authority = builder.Configuration["IdentityServiceUrl"];
+        options.Authority = builder.Configuration["IdentityServiceSTSIdentityUrl"];
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters.ValidateAudience = false;
         options.TokenValidationParameters.NameClaimType = "username";

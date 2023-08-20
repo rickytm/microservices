@@ -10,11 +10,11 @@ using System.Net;
 using C = Common.Constants;
 namespace Catalog.API.Controllers;
 
-public class ProductController : BaseController
+public class CatalogController : BaseController
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public ProductController(IHttpContextAccessor httpContextAccessor)
+    public CatalogController(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
     }
