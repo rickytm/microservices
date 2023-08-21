@@ -7,11 +7,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+COPY ["src/Services/GatewayService/GatewayService.csproj", "src/Services/GatewayService/"]
 COPY ["src/Services/Localization/Localization.API/Localization.API.csproj", "src/Services/Localization/Localization.API/"]
 COPY ["src/Services/Localization/Localization.Application/Localization.Application.csproj", "src/Services/Localization/Localization.Application/"]
 COPY ["src/Services/Localization/Localization.Core/Localization.Core.csproj", "src/Services/Localization/Localization.Core/"]
 COPY ["src/Services/Localization/Localization.Infrastructure/Localization.Infrastructure.csproj", "src/Services/Localization/Localization.Infrastructure/"]
+
 RUN dotnet restore "src/Services/Localization/Localization.API/Localization.API.csproj"
+
 COPY . .
 WORKDIR "/src/src/Services/Localization/Localization.API"
 RUN dotnet build "Localization.API.csproj" -c Release -o /app/build

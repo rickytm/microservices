@@ -22,8 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common.Api\Common.Api.csproj" />
-    <ProjectReference Include="..\..\..\Common\Common.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Api\Common.Api.csproj" />
     <ProjectReference Include="..\Localization.Application\Localization.Application.csproj" />
     <ProjectReference Include="..\Localization.Infrastructure\Localization.Infrastructure.csproj" />
   </ItemGroup>

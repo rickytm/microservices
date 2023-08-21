@@ -1,25 +1,25 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0 as build
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-#copy all .csproj files and restore as distinct layers. Use of the same COPY command for all layers
-COPY Cartsties.sln Cartsties.sln
-COPY src/AuctionService/AuctionService.csproj src/AuctionService/AuctionService.csproj
-COPY src/SearchServices/SearchServices.csproj src/SearchServices/SearchServices.csproj
-COPY src/GatewayService/GatewayService.csproj src/GatewayService/GatewayService.csproj
-COPY src/Contracts/Contracts.csproj src/Contracts/Contracts.csproj
-COPY src/IdentityService/IdentityService.csproj src/IdentityService/IdentityService.csproj
 
-#Restore packages deps
-RUN dotnet restore Cartsties.sln
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["src/Services/GatewayService/GatewayService.csproj", "src/Services/GatewayService/"]
+COPY ["src/Services/Localization/Localization.API/Localization.API.csproj", "src/Services/Localization/Localization.API/"]
+RUN dotnet restore "src/Services/GatewayService/GatewayService.csproj"
+COPY . .
+WORKDIR "/src/src/Services/GatewayService"
+RUN dotnet build "GatewayService.csproj" -c Release -o /app/build
 
-#Copy the app folders over
-COPY src/GatewayService src/GatewayService
-WORKDIR /app/src/GatewayService
-RUN dotnet publish -c Release -o /app/src/out
+FROM build AS publish
+RUN dotnet publish "GatewayService.csproj" -c Release -o /app/publish
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0
+
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/src/out .
+COPY --from=publish /app/publish .
+ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
 ENTRYPOINT ["dotnet", "GatewayService.dll"]
