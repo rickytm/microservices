@@ -3,30 +3,27 @@ services:
   postgres:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=Tengo863004$      
+      - POSTGRES_PASSWORD=Tengo863004.
     ports:
       - 5432:5432
     volumes:
       - /var/lib/postgresql/data
- 
 
   mongodb:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=Tengo863004$
+      - MONGO_INITDB_ROOT_PASSWORD=Tengo863004.
     ports:
       - 27017:27017
     volumes:
       - /var/lib/mongodb/data
- 
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
- 
 
   nginx-proxy:
     image: jwilder/nginx-proxy
@@ -46,7 +43,6 @@ services:
           - admin.skoruba.local
           - admin-api.skoruba.local
     restart: always
-  
 
   identityservice.admin:
     image: 'rickytm/identityservice.admin:latest'
@@ -56,12 +52,12 @@ services:
     container_name: identityservice.admin
     environment:
       - VIRTUAL_HOST=admin.skoruba.local
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdminConfiguration__IdentityAdminRedirectUri=https://admin.skoruba.local/signin-oidc'
       - 'AdminConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
@@ -72,7 +68,7 @@ services:
       - 'IdentityServerData__Clients__0__PostLogoutRedirectUris__0=https://admin.skoruba.local/signout-callback-oidc'
       - 'IdentityServerData__Clients__0__AllowedCorsOrigins__0=https://admin.skoruba.local'
       - 'IdentityServerData__Clients__1__RedirectUris__0=https://admin-api.skoruba.local/swagger/oauth2-redirect.html'
-      - 'Serilog__WriteTo__1__Args__connectionString=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
+      - 'Serilog__WriteTo__1__Args__connectionString=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     command: dotnet IdentityService.Admin.dll /seed
@@ -87,7 +83,6 @@ services:
     networks:
       identityserverui: null
 
-
   identityservice.admin.api:
     image: 'rickytm/identityservice.admin.api:latest'
     build:
@@ -99,12 +94,12 @@ services:
       - AdminApiConfiguration__RequireHttpsMetadata=false
       - 'AdminApiConfiguration__ApiBaseUrl=https://admin-api.skoruba.local'
       - 'AdminApiConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
@@ -112,7 +107,6 @@ services:
       - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui: null
-
 
   identityservice.sts.identity:
     image: 'rickytm/identityservice.sts.identity:latest'
@@ -122,10 +116,10 @@ services:
     container_name: identityservice.sts.identity
     environment:
       - VIRTUAL_HOST=sts.skoruba.local
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004$;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;MultipleActiveResultSets=true'
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdvancedConfiguration__IssuerUri=https://sts.skoruba.local'
       - DockerConfiguration__UpdateCaCertificate=true
@@ -138,26 +132,24 @@ services:
     networks:
       identityserverui:
         aliases:
-          - sts.skoruba.local  
-
+          - sts.skoruba.local
 
   catalogservice.api:
     image: 'rickytm/catalogservice.api:latest'
     build:
-       context: .
-       dockerfile: src/Services/CatalogService/Catalog.API/Dockerfile
+      context: .
+      dockerfile: src/Services/CatalogService/Catalog.API/Dockerfile
     container_name: catalogservice.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://*:80
       - RABBITMQ__HOST=rabbitmq
-      - ConnectionStrings__ConnectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004$;Database=catalog
+      - ConnectionStrings__ConnectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=catalog
     ports:
       - 5001:80
     depends_on:
       - postgres
       - rabbitmq
-
 
   localizationservice.api:
     image: 'rickytm/localizationservice.api:latest'
@@ -168,12 +160,11 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://*:80
-      - ConnectionStrings__ConnectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004$;Database=localization
+      - ConnectionStrings__ConnectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=localization
     ports:
       - 5000:80
     depends_on:
-     - postgres
-    
+      - postgres
 
   gatewayservice:
     image: 'rickytm/gatewayservice:latest'
@@ -185,10 +176,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://*:80
     ports:
-      - 6001:80 
-
-
-
+      - 6001:80
 
 volumes:
   dbdata:

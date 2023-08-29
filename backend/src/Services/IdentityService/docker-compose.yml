@@ -2,17 +2,17 @@ version: '3.4'
 services:
   seq:
     image: datalust/seq:latest
-    hostname: "seq"
+    hostname: 'seq'
     environment:
       - ACCEPT_EULA=Y
     labels:
-      NAME: "seq"
+      NAME: 'seq'
     ports:
-    - "5341:80"
+      - '5341:80'
   postgres:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=Tengo863004$
+      - POSTGRES_PASSWORD=Tengo863004.
     ports:
       - 5432:5432
     volumes:
@@ -21,7 +21,7 @@ services:
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=Tengo863004$
+      - MONGO_INITDB_ROOT_PASSWORD=Tengo863004.
     ports:
       - 27017:27017
     volumes:
@@ -135,7 +135,7 @@ services:
     networks:
       identityserverui:
         aliases:
-          - sts.skoruba.local  
+          - sts.skoruba.local
 volumes:
   dbdata:
     driver: local
