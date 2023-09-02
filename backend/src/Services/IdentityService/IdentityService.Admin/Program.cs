@@ -30,6 +30,9 @@ namespace IdentityService.Admin
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
 
+            var print = Environment.GetEnvironmentVariable("ConnectionStrings:DataProtectionDbConnection");
+            Log.Information(print);
+
             try
             {
                 DockerHelpers.ApplyDockerConfiguration(configuration);

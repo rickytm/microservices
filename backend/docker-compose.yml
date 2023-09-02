@@ -52,12 +52,12 @@ services:
     container_name: identityservice.admin
     environment:
       - VIRTUAL_HOST=admin.skoruba.local
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
+      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__AdminLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdminConfiguration__IdentityAdminRedirectUri=https://admin.skoruba.local/signin-oidc'
       - 'AdminConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
@@ -68,7 +68,7 @@ services:
       - 'IdentityServerData__Clients__0__PostLogoutRedirectUris__0=https://admin.skoruba.local/signout-callback-oidc'
       - 'IdentityServerData__Clients__0__AllowedCorsOrigins__0=https://admin.skoruba.local'
       - 'IdentityServerData__Clients__1__RedirectUris__0=https://admin-api.skoruba.local/swagger/oauth2-redirect.html'
-      - 'Serilog__WriteTo__1__Args__connectionString=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
+      - Serilog__WriteTo__1__Args__connectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     command: dotnet IdentityService.Admin.dll /seed
@@ -94,12 +94,12 @@ services:
       - AdminApiConfiguration__RequireHttpsMetadata=false
       - 'AdminApiConfiguration__ApiBaseUrl=https://admin-api.skoruba.local'
       - 'AdminApiConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__AdminLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
+      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__AdminLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
@@ -116,10 +116,10 @@ services:
     container_name: identityservice.sts.identity
     environment:
       - VIRTUAL_HOST=sts.skoruba.local
-      - 'ConnectionStrings__ConfigurationDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__IdentityDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
-      - 'ConnectionStrings__DataProtectionDbConnection=Server=postgres;Database=IdentityServerAdmin;User Id=postgres;Password=Tengo863004.;'
+      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdvancedConfiguration__IssuerUri=https://sts.skoruba.local'
       - DockerConfiguration__UpdateCaCertificate=true
