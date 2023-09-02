@@ -7,7 +7,8 @@
 		"start": "npm run stop && npm run build && npm run up",
 		"stop": "cd backend && docker compose down",
 		"build": "cd backend && docker compose build",
-		"up": "cd backend && docker compose up -d"
+		"up": "cd backend && docker compose up -d",
+		"postgres":"cd backend && docker compose up -d postgres"
 	},
 	"repository": {
 		"type": "git",
