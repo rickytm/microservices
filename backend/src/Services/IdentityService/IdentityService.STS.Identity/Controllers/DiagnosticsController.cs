@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IdentityService.STS.Identity.Helpers;
 using IdentityService.STS.Identity.ViewModels.Diagnostics;
+using System.Collections.Generic;
 
 namespace IdentityService.STS.Identity.Controllers
 {
@@ -20,7 +21,15 @@ namespace IdentityService.STS.Identity.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var localAddresses = new string[] { "127.0.0.1", "::1", HttpContext.Connection?.LocalIpAddress?.ToString() };
+            var remoteIps = new List<string>();
+            for (int i = 0; i < 256; i++)
+            {
+                remoteIps.Add($"::ffff:172.{i}.0.1");
+            }
+            remoteIps.Add("127.0.0.1");
+            remoteIps.Add("::1");
+            remoteIps.Add(HttpContext.Connection.LocalIpAddress.ToString());
+            var localAddresses = remoteIps.ToArray();
             if (!localAddresses.Contains(HttpContext.Connection?.RemoteIpAddress?.ToString()))
             {
                 return NotFound();
