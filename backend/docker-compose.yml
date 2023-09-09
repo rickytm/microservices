@@ -1,5 +1,15 @@
 version: '3.4'
 services:
+  seq:
+    image: datalust/seq:latest
+    hostname: 'seq'
+    environment:
+      - ACCEPT_EULA=Y
+    labels:
+      NAME: 'seq'
+    ports:
+      - '5341:80'
+
   postgres:
     image: postgres
     environment:
@@ -58,16 +68,16 @@ services:
       - ConnectionStrings__AdminLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - 'AdminConfiguration__IdentityAdminBaseUrl=${IDENTITYSERVICE_ADMIN}'
-      - 'AdminConfiguration__IdentityAdminRedirectUri=${IDENTITYSERVICE_ADMIN}/signin-oidc'
-      - 'AdminConfiguration__IdentityServerBaseUrl=${IDENTITYSERVICE_STS_IDENTITY}'
+      - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
+      - 'AdminConfiguration__IdentityAdminRedirectUri=https://admin.skoruba.local/signin-oidc'
+      - 'AdminConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
       - AdminConfiguration__RequireHttpsMetadata=false
-      - 'IdentityServerData__Clients__0__ClientUri=${IDENTITYSERVICE_ADMIN}'
-      - 'IdentityServerData__Clients__0__RedirectUris__0=${IDENTITYSERVICE_ADMIN}/signin-oidc'
-      - 'IdentityServerData__Clients__0__FrontChannelLogoutUri=${IDENTITYSERVICE_ADMIN}/signin-oidc'
-      - 'IdentityServerData__Clients__0__PostLogoutRedirectUris__0=${IDENTITYSERVICE_ADMIN}/signout-callback-oidc'
-      - 'IdentityServerData__Clients__0__AllowedCorsOrigins__0=${IDENTITYSERVICE_ADMIN}'
-      - 'IdentityServerData__Clients__1__RedirectUris__0=${IDENTITYSERVICE_ADMIN_API}/swagger/oauth2-redirect.html'
+      - 'IdentityServerData__Clients__0__ClientUri=https://admin.skoruba.local'
+      - 'IdentityServerData__Clients__0__RedirectUris__0=https://admin.skoruba.local/signin-oidc'
+      - 'IdentityServerData__Clients__0__FrontChannelLogoutUri=https://admin.skoruba.local/signin-oidc'
+      - 'IdentityServerData__Clients__0__PostLogoutRedirectUris__0=https://admin.skoruba.local/signout-callback-oidc'
+      - 'IdentityServerData__Clients__0__AllowedCorsOrigins__0=https://admin.skoruba.local'
+      - 'IdentityServerData__Clients__1__RedirectUris__0=https://admin-api.skoruba.local/swagger/oauth2-redirect.html'
       - Serilog__WriteTo__1__Args__connectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
@@ -79,9 +89,9 @@ services:
       - './shared/serilog.json:/app/serilog.json'
       - './shared/identitydata.json:/app/identitydata.json'
       - './shared/identityserverdata.json:/app/identityserverdata.json'
-      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
-    ports:
-      - 4000:80 
+      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+    networks:
+      identityserverui: null 
 
   identityservice.admin.api:
     image: 'rickytm/identityservice.admin.api:latest'
@@ -92,8 +102,8 @@ services:
     environment:
       - VIRTUAL_HOST=admin-api.skoruba.local
       - AdminApiConfiguration__RequireHttpsMetadata=false
-      - 'AdminApiConfiguration__ApiBaseUrl=${IDENTITYSERVICE_ADMIN_API}'
-      - 'AdminApiConfiguration__IdentityServerBaseUrl=${IDENTITYSERVICE_STS_IDENTITY}'
+      - 'AdminApiConfiguration__ApiBaseUrl=https://admin-api.skoruba.local'
+      - 'AdminApiConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
       - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
@@ -104,9 +114,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - './shared/serilog.json:/app/serilog.json'
-      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
-    ports:
-      - 4001:80
+      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+    networks:
+      identityserverui: null
 
   identityservice.sts.identity:
     image: 'rickytm/identityservice.sts.identity:latest'
@@ -120,17 +130,19 @@ services:
       - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
       - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - 'AdminConfiguration__IdentityAdminBaseUrl=${IDENTITYSERVICE_ADMIN}'
-      - 'AdvancedConfiguration__IssuerUri=${IDENTITYSERVICE_STS_IDENTITY}'
+      - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
+      - 'AdvancedConfiguration__IssuerUri=https://sts.skoruba.local'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       - postgres
     volumes:
       - './shared/serilog.json:/app/serilog.json'
-      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
-    ports:
-      - 4010:80
+      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+    networks:
+      identityserverui:
+        aliases:
+          - sts.skoruba.local
 
   catalogservice.api:
     image: 'rickytm/catalogservice.api:latest'

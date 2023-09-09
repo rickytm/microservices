@@ -13,7 +13,12 @@ WORKDIR "/src/src/Services/IdentityService/IdentityService.STS.Identity"
 RUN dotnet build "IdentityService.STS.Identity.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "IdentityService.STS.Identity.csproj" -c Release -o /app/publish
+RUN dotnet publish "IdentityService.STS.Identity.csproj" -c Release -o /app/publish \	
+	              --runtime linux-musl-x64 \ 
+                  --self-contained true \
+#                  /p:PublishTrimmed=true \
+                  /p:PublishReadyToRun=true \
+                  /p:PublishSingleFile=true 
 
 FROM base AS final
 WORKDIR /app
