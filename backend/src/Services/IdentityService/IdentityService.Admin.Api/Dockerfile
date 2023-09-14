@@ -1,13 +1,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Services/IdentityService/IdentityService.Admin.Api/IdentityService.Admin.Api.csproj", "src/Services/IdentityService/IdentityService.Admin.Api/"]
 COPY ["src/Services/IdentityService/IdentityService.Admin.EntityFramework.Shared/IdentityService.Admin.EntityFramework.Shared.csproj", "src/Services/IdentityService/IdentityService.Admin.EntityFramework.Shared/"]
 COPY ["src/Services/IdentityService/IdentityService.Shared/IdentityService.Shared.csproj", "src/Services/IdentityService/IdentityService.Shared/"]
-COPY ["src/Services/IdentityService/IdentityService.Admin.EntityFramework.PostgreSQL/IdentityService.Admin.EntityFramework.PostgreSQL.csproj", "src/Services/IdentityService/IdentityService.Admin.EntityFramework.PostgreSQL/"]
+COPY ["src/Services/IdentityService/IdentityService.Admin.EntityFramework.SqlServer/IdentityService.Admin.EntityFramework.SqlServer.csproj", "src/Services/IdentityService/IdentityService.Admin.EntityFramework.SqlServer/"]
 RUN dotnet restore "src/Services/IdentityService/IdentityService.Admin.Api/IdentityService.Admin.Api.csproj"
 COPY . .
 WORKDIR "/src/src/Services/IdentityService/IdentityService.Admin.Api"

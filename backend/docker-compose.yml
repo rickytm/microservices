@@ -1,15 +1,5 @@
 version: '3.4'
 services:
-  seq:
-    image: datalust/seq:latest
-    hostname: 'seq'
-    environment:
-      - ACCEPT_EULA=Y
-    labels:
-      NAME: 'seq'
-    ports:
-      - '5341:80'
-
   postgres:
     image: postgres
     environment:
@@ -62,12 +52,12 @@ services:
     container_name: identityservice.admin
     environment:
       - VIRTUAL_HOST=admin.skoruba.local
-      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__AdminLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminLogDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdminConfiguration__IdentityAdminRedirectUri=https://admin.skoruba.local/signin-oidc'
       - 'AdminConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
@@ -78,18 +68,18 @@ services:
       - 'IdentityServerData__Clients__0__PostLogoutRedirectUris__0=https://admin.skoruba.local/signout-callback-oidc'
       - 'IdentityServerData__Clients__0__AllowedCorsOrigins__0=https://admin.skoruba.local'
       - 'IdentityServerData__Clients__1__RedirectUris__0=https://admin-api.skoruba.local/swagger/oauth2-redirect.html'
-      - Serilog__WriteTo__1__Args__connectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - Serilog__WriteTo__1__Args__connectionString=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity;Trust Server Certificate=true;
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     command: dotnet IdentityService.Admin.dll /seed
     depends_on:
-      - postgres
+      - db
       - identityservice.sts.identity
     volumes:
       - './shared/serilog.json:/app/serilog.json'
       - './shared/identitydata.json:/app/identitydata.json'
       - './shared/identityserverdata.json:/app/identityserverdata.json'
-      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui: null 
 
@@ -104,17 +94,17 @@ services:
       - AdminApiConfiguration__RequireHttpsMetadata=false
       - 'AdminApiConfiguration__ApiBaseUrl=https://admin-api.skoruba.local'
       - 'AdminApiConfiguration__IdentityServerBaseUrl=https://sts.skoruba.local'
-      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__AdminLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__AdminAuditLogDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminLogDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__AdminAuditLogDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
       - './shared/serilog.json:/app/serilog.json'
-      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui: null
 
@@ -126,23 +116,36 @@ services:
     container_name: identityservice.sts.identity
     environment:
       - VIRTUAL_HOST=sts.skoruba.local
-      - ConnectionStrings__ConfigurationDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__PersistedGrantDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__IdentityDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
-      - ConnectionStrings__DataProtectionDbConnection=Server=postgres;Port=5432;User Id=postgres;Password=Tengo863004.;Database=identity; SSL Mode=Prefer; Trust Server Certificate=true;
+      - 'ConnectionStrings__ConfigurationDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__PersistedGrantDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__IdentityDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
+      - 'ConnectionStrings__DataProtectionDbConnection=Server=db;Database=IdentityServerAdmin;User Id=sa;Password=${DB_PASSWORD:-Password_123};MultipleActiveResultSets=true'
       - 'AdminConfiguration__IdentityAdminBaseUrl=https://admin.skoruba.local'
       - 'AdvancedConfiguration__IssuerUri=https://sts.skoruba.local'
       - DockerConfiguration__UpdateCaCertificate=true
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
-      - postgres
+      - db
     volumes:
       - './shared/serilog.json:/app/serilog.json'
-      - './shared/nginx/certs/skoruba.local.crt:/usr/local/share/ca-certificates/skoruba.local.crt'
+      - './shared/nginx/certs/cacerts.crt:/usr/local/share/ca-certificates/cacerts.crt'
     networks:
       identityserverui:
         aliases:
           - sts.skoruba.local
+
+  db:
+    image: 'mcr.microsoft.com/mssql/server:2017-CU20-ubuntu-16.04'
+    ports:
+      - '7900:1433'
+    container_name: identityserver-db
+    environment:
+      SA_PASSWORD: '${DB_PASSWORD:-Password_123}'
+      ACCEPT_EULA: 'Y'
+    volumes:
+      - 'dbdata:/var/opt/mssql'
+    networks:
+      identityserverui: null
 
   catalogservice.api:
     image: 'rickytm/catalogservice.api:latest'

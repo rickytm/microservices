@@ -9,8 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{BF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0F9CECA-F5C1-4DD0-A809-BBAEDEA0F572}"
 	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
 		.env = .env
+		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
@@ -57,6 +57,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Shared", "src\Services\IdentityService\IdentityService.Shared\IdentityService.Shared.csproj", "{46357D20-F008-4672-B665-1B5FBEBFB4A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.STS.Identity", "src\Services\IdentityService\IdentityService.STS.Identity\IdentityService.STS.Identity.csproj", "{AEF7CC07-04E0-47B4-AE65-60C47940E526}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Admin.EntityFramework.SqlServer", "src\Services\IdentityService\IdentityService.Admin.EntityFramework.SqlServer\IdentityService.Admin.EntityFramework.SqlServer.csproj", "{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +134,10 @@ Global
 		{AEF7CC07-04E0-47B4-AE65-60C47940E526}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEF7CC07-04E0-47B4-AE65-60C47940E526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEF7CC07-04E0-47B4-AE65-60C47940E526}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,6 +166,7 @@ Global
 		{6F716E8B-9AA1-4385-84E4-AA906675175A} = {4E6579D6-A8EA-4952-91A7-202F61FCCE0B}
 		{46357D20-F008-4672-B665-1B5FBEBFB4A5} = {4E6579D6-A8EA-4952-91A7-202F61FCCE0B}
 		{AEF7CC07-04E0-47B4-AE65-60C47940E526} = {4E6579D6-A8EA-4952-91A7-202F61FCCE0B}
+		{C9D8ACE6-248A-4FA1-BE1D-B4ACEFE38EC0} = {4E6579D6-A8EA-4952-91A7-202F61FCCE0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E81A558-FF82-46E4-A1EF-B2B69DEEA119}

@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 using Skoruba.Duende.IdentityServer.Admin.EntityFramework.Configuration.Configuration;
-using PostgreSQLMigrationAssembly = IdentityService.Admin.EntityFramework.PostgreSQL.Helpers.MigrationAssembly;
+using SqlMigrationAssembly = IdentityService.Admin.EntityFramework.SqlServer.Helpers.MigrationAssembly;
 
 namespace IdentityService.Admin.Configuration.Database
 {
@@ -14,9 +14,7 @@ namespace IdentityService.Admin.Configuration.Database
         {
             return databaseProvider.ProviderType switch
             {
-                DatabaseProviderType.PostgreSQL => typeof(PostgreSQLMigrationAssembly).GetTypeInfo()
-                    .Assembly.GetName()
-                    .Name,                
+                DatabaseProviderType.SqlServer => typeof(SqlMigrationAssembly).GetTypeInfo().Assembly.GetName().Name,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

@@ -47,6 +47,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\IdentityService.Admin.EntityFramework.PostgreSQL\IdentityService.Admin.EntityFramework.PostgreSQL.csproj" />
+        <ProjectReference Include="..\IdentityService.Admin.EntityFramework.SqlServer\IdentityService.Admin.EntityFramework.SqlServer.csproj" />
         <ProjectReference Include="..\IdentityService.Shared\IdentityService.Shared.csproj" />
     </ItemGroup>
 

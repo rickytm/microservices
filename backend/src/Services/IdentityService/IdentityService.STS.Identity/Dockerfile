@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
@@ -13,12 +14,7 @@ WORKDIR "/src/src/Services/IdentityService/IdentityService.STS.Identity"
 RUN dotnet build "IdentityService.STS.Identity.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "IdentityService.STS.Identity.csproj" -c Release -o /app/publish \	
-	              --runtime linux-musl-x64 \ 
-                  --self-contained true \
-#                  /p:PublishTrimmed=true \
-                  /p:PublishReadyToRun=true \
-                  /p:PublishSingleFile=true 
+RUN dotnet publish "IdentityService.STS.Identity.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
